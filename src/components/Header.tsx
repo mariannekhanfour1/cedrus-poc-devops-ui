@@ -8,7 +8,7 @@ export const HeaderComponent: React.FC = (props) => {
     return (
         <>
             <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+                <Navbar.Brand href="#home">Apply Here</Navbar.Brand>
                 <Nav className="mr-auto">
                 {/* <LinkContainer to="/"> */}
                     <Nav.Link href="#home">Home</Nav.Link>
