@@ -29,7 +29,7 @@ steps:
   displayName: 'Copy files'
   inputs:
     sourceFolder: 'build' 
-    # Contents: '**/*'
+    Contents: '**/*'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     cleanTargetFolder: true
 
@@ -47,15 +47,15 @@ steps:
     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
     includeRootFolder: true
     archiveType: 'tar'
-    tarCompression: gz
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tgz'
+    # tarCompression: gz
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tar'
     replaceExistingArchive: true
 
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Build Artifacts'
   inputs: 
-    pathtoPublish:  '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tgz'
+    pathtoPublish:  '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tar'
     # PathtoPublish: '$(build.artifactstagingdirectory)'
 
 - task: AzureWebApp@1
@@ -64,5 +64,5 @@ steps:
     azureSubscription: poc_test_connection
     appName: cedrus-poc-ui
     appType: webApp
-    package:  '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tgz'
+    package:  '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).tar'
     # package: '$(System.ArtifactsDirectory)'
