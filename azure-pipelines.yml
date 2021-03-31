@@ -66,8 +66,9 @@ steps:
     WebAppName: cedrus-poc-ui
     packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     StartupCommand: 'npm run start'
-    # ScriptType: 'Inline Script'
-    # InlineScript: |
-    #   npm install
-    #   npm run build --if-present
+    ScriptType: 'Inline Script'
+    InlineScript: |
+      npm install
+      npm run build --if-present
+      
     # package: '$(System.ArtifactsDirectory)'
