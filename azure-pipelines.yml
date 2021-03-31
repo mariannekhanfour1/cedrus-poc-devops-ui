@@ -33,20 +33,20 @@ steps:
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     cleanTargetFolder: true
 
-# - task: ArchiveFiles@2
-#   displayName: 'Archive files'
-#   inputs:
-#     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
-#     includeRootFolder: false
-#     archiveType: zip
-#     archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-#     replaceExistingArchive: true
+- task: ArchiveFiles@2
+  displayName: 'Archive files'
+  inputs:
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+    includeRootFolder: false
+    # archiveType: zip
+    archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)
+    replaceExistingArchive: true
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Build Artifacts'
   inputs: 
-    # pathtoPublish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-    PathtoPublish: '$(build.artifactstagingdirectory)'
+    pathtoPublish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)
+    # PathtoPublish: '$(build.artifactstagingdirectory)'
 
 - task: AzureWebApp@1
   displayName: 'Deploy to App Service'
@@ -54,5 +54,5 @@ steps:
     azureSubscription: poc_test_connection
     appName: cedrus-poc-ui
     appType: webApp
-    # package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
-    package: '$(System.ArtifactsDirectory)'
+    package: '$(System.ArtifactsDirectory)/$(Build.BuildId)'
+    # package: '$(System.ArtifactsDirectory)'
