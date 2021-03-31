@@ -64,5 +64,10 @@ steps:
     azureSubscription: poc_test_connection
     appName: cedrus-poc-ui
     appType: webAppLinux
-    package:  '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    package: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    StartupCommand: 'npm run start'
+              # ScriptType: 'Inline Script'
+              # InlineScript: |
+              #   npm install
+              #   npm run build --if-present
     # package: '$(System.ArtifactsDirectory)'
