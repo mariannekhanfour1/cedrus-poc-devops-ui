@@ -10,9 +10,9 @@ export const HeaderComponent: React.FC = (props) => {
             <Navbar bg="dark" variant="dark">
                 <Navbar.Brand href="#home">Navbar</Navbar.Brand>
                 <Nav className="mr-auto">
-                <LinkContainer to="/">
+                {/* <LinkContainer to="/"> */}
                     <Nav.Link href="#home">Home</Nav.Link>
-                    </LinkContainer>
+                    {/* </LinkContainer> */}
                     <Nav.Link href="#features">Features</Nav.Link>
                     <Nav.Link href="#pricing">Products</Nav.Link>
                 </Nav>
