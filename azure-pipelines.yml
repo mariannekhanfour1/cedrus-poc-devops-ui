@@ -29,23 +29,25 @@ steps:
   displayName: 'Copy files'
   inputs:
     sourceFolder: 'build' 
-    Contents: '**/*'
+    # Contents: '**/*'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     cleanTargetFolder: true
 
-- task: ArchiveFiles@2
-  displayName: 'Archive files'
-  inputs:
-    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
-    includeRootFolder: false
-    archiveType: zip
-    archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-    replaceExistingArchive: true
+# - task: ArchiveFiles@2
+#   displayName: 'Archive files'
+#   inputs:
+#     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+#     includeRootFolder: false
+#     archiveType: zip
+#     archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+#     replaceExistingArchive: true
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Build Artifacts'
   inputs: 
-    pathtoPublish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    # pathtoPublish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    PathtoPublish: '$(build.artifactstagingdirectory)'
+    ArtifactName: 'build'
 
 - task: AzureWebApp@1
   displayName: 'Deploy to App Service'
@@ -53,6 +55,5 @@ steps:
     azureSubscription: '$(serviceConnection)'
     appName: '$(appServiceName)'
     appType: 'webApp'
-    package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
-
-
+    # package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
+    package: '$(System.ArtifactsDirectory)/build'
