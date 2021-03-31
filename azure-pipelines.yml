@@ -6,13 +6,73 @@
 trigger:
 - master
 
+
+variables:
+
+  # Azure Resource Manager connection created during pipeline creation
+  azureSubscription: poc_test_connection
+
+  # Web app name
+  webAppName: cedrus-poc-ui
+
+  # Environment name
+  # environmentName: '{{ webAppName }}'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
 pool:
   vmImage: ubuntu-latest
-  
-variables:
-  directory: cedrus-devops-poc
-  serviceConnection: poc_test_connection
-  appServiceName: cedrus-poc-ui
+
+# stages:
+# - stage: Build
+#   displayName: Build stage
+#   jobs:
+#   - job: Build
+#     displayName: Build
+#     pool:
+#       vmImage: $(vmImageName)
+
+#     steps:
+#     - task: ArchiveFiles@2
+#       displayName: 'Archive files'
+#       inputs:
+#         rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+#         includeRootFolder: false
+#         archiveType: zip
+#         archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+#         replaceExistingArchive: true
+
+#     - upload: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+#       artifact: drop
+
+# - stage: Deploy
+#   displayName: Deploy stage
+#   dependsOn: Build
+#   condition: succeeded()
+#   jobs:
+#   - deployment: Deploy
+#     displayName: Deploy
+#     environment: $(environmentName)
+#     pool:
+#       vmImage: $(vmImageName)
+#     strategy:
+#       runOnce:
+#         deploy:
+#           steps:
+#           - task: AzureRmWebAppDeployment@4
+#             displayName: 'Azure App Service Deploy: $(webAppName) '
+#             inputs:
+#               azureSubscription: $(azureSubscription)
+#               appType: webAppLinux
+#               WebAppName: $(webAppName)
+#               packageForLinux: '$(Pipeline.Workspace)/drop/$(Build.BuildId).zip'
+#               RuntimeStack: 'NODE|12.x'
+#               # StartupCommand: 'npm run start'
+#               # ScriptType: 'Inline Script'
+#               # InlineScript: |
+#               #   npm install
+              #   npm run build --if-present
 
 steps:
 - task: NodeTool@0
@@ -25,31 +85,32 @@ steps:
     npm run build
   displayName: 'npm install and build'
   
-- task: CopyFiles@2
-  displayName: 'Copy files'
-  inputs:
-    sourceFolder: 'build' 
-    Contents: '**/*'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-    cleanTargetFolder: true
-
-# - task: ArchiveFiles@2
-#   displayName: 'Archive files'
+# - task: CopyFiles@2
+#   displayName: 'Copy files'
 #   inputs:
-#     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
-#     includeRootFolder: false
-#     # archiveType: zip
-#     archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)
-
+#     sourceFolder: 'build' 
+#     Contents: '**/*'
+#     TargetFolder: '$(Build.ArtifactStagingDirectory)'
+#     cleanTargetFolder: true
 
 - task: ArchiveFiles@2
+  displayName: 'Archive files'
   inputs:
-    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
-    includeRootFolder: true
-    archiveType: 'zip'
-    # tarCompression: gz
-    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)'
+    includeRootFolder: false
+    archiveType: zip
+    archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
     replaceExistingArchive: true
+
+
+# - task: ArchiveFiles@2
+#   inputs:
+#     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+#     includeRootFolder: true
+#     archiveType: 'zip'
+#     # tarCompression: gz
+#     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+#     replaceExistingArchive: true
 
 
 - task: PublishBuildArtifacts@1
@@ -58,11 +119,17 @@ steps:
     pathtoPublish:  '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     # PathtoPublish: '$(build.artifactstagingdirectory)'
 
-- task: AzureWebApp@1
+- task: AzureRmWebAppDeployment@4
   displayName: 'Deploy to App Service'
   inputs:
     azureSubscription: poc_test_connection
-    appName: cedrus-poc-ui
-    appType: webApp
-    package:  '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    appType: webAppLinux
+    WebAppName: cedrus-poc-ui
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    # StartupCommand: 'npm run start'
+    # ScriptType: 'Inline Script'
+    # InlineScript: |
+    #   npm install
+    #   npm run build --if-present
+      
     # package: '$(System.ArtifactsDirectory)'
