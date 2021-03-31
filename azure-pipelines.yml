@@ -46,14 +46,13 @@ steps:
   displayName: 'Publish Build Artifacts'
   inputs: 
     # pathtoPublish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
-    PathtoPublish: '$(build.artifactstagingdirectory)'
-    ArtifactName: 'build'
+    PathtoPublish: '$(build.artifactstagingdirectory)/build'
 
 - task: AzureWebApp@1
   displayName: 'Deploy to App Service'
   inputs:
-    azureSubscription: '$(serviceConnection)'
-    appName: '$(appServiceName)'
-    appType: 'webApp'
+    azureSubscription: poc_test_connection
+    appName: cedrus-poc-ui
+    appType: webApp
     # package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
     package: '$(System.ArtifactsDirectory)/build'
