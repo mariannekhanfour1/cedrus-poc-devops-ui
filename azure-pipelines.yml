@@ -28,31 +28,41 @@ steps:
 - task: CopyFiles@2
   displayName: 'Copy files'
   inputs:
-    sourceFolder: '$(directory)/build' 
+    sourceFolder: 'build' 
     Contents: '**/*'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
     cleanTargetFolder: true
 
+# - task: ArchiveFiles@2
+#   displayName: 'Archive files'
+#   inputs:
+#     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
+#     includeRootFolder: false
+#     # archiveType: zip
+#     archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)
+
+
 - task: ArchiveFiles@2
-  displayName: 'Archive files'
   inputs:
     rootFolderOrFile: '$(Build.ArtifactStagingDirectory)'
-    includeRootFolder: false
-    archiveType: zip
-    archiveFile: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    includeRootFolder: true
+    archiveType: 'zip'
+    # tarCompression: gz
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     replaceExistingArchive: true
+
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish Build Artifacts'
   inputs: 
-    pathtoPublish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip
+    pathtoPublish:  '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    # PathtoPublish: '$(build.artifactstagingdirectory)'
 
 - task: AzureWebApp@1
   displayName: 'Deploy to App Service'
   inputs:
-    azureSubscription: '$(serviceConnection)'
-    appName: '$(appServiceName)'
-    appType: 'webApp'
-    package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
-
-
+    azureSubscription: poc_test_connection
+    appName: cedrus-poc-ui
+    appType: webApp
+    package:  '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    # package: '$(System.ArtifactsDirectory)'
