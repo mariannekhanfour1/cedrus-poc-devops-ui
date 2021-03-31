@@ -55,4 +55,4 @@ steps:
     appName: cedrus-poc-ui
     appType: webApp
     # package: '$(System.ArtifactsDirectory)/$(Build.BuildId).zip'
-    package: '$(System.ArtifactsDirectory)/build'
+    package: '$(System.ArtifactsDirectory)'
