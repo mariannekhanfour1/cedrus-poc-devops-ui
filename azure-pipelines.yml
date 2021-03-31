@@ -63,6 +63,6 @@ steps:
   inputs:
     azureSubscription: poc_test_connection
     appName: cedrus-poc-ui
-    appType: webApp
+    appType: webAppLinux
     package:  '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
     # package: '$(System.ArtifactsDirectory)'
