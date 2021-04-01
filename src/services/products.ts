@@ -1,12 +1,13 @@
 import  axios, { AxiosRequestConfig } from "axios";
+
 require('dotenv').config();
 
 
-export const getProfile = async () => {
+export const getPrediction = async () => {
     const options: AxiosRequestConfig = {
-            url: `${process.env.REACT_APP_GREETING_SERVICE}/profile`,
+            url: `${process.env.REACT_APP_RULE_ENGINE_SERVICE}/predict`,
             method: "get",
-            // withCredentials: true,
+            
     }
     const result = await axios(options);
     return result
