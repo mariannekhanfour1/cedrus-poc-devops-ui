@@ -11,7 +11,7 @@ export const HeaderComponent: React.FC = (props) => {
                 <Navbar.Brand href="#home">Apply Here</Navbar.Brand>
                 <Nav className="mr-auto">
                 {/* <LinkContainer to="/"> */}
-                    <Nav.Link href="#home">Home</Nav.Link>
+                    {/* <Nav.Link href="#home">Home</Nav.Link> */}
                     {/* </LinkContainer> */}
                     {/* <Nav.Link href="#features">Features</Nav.Link>
                     <Nav.Link href="#pricing">Products</Nav.Link> */}
