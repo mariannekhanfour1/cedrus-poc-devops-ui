@@ -10,7 +10,7 @@ pr: none
 
 variables:
   # Azure Resource Manager connection created during pipeline creation
-  azureSubscription: poc_test_connection
+  azureSubscription: poc_alaska_connection
   # Web app name
   webAppName: cedrus-poc-ui
   # Environment name
@@ -18,7 +18,7 @@ variables:
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
   # This needs to have a static website setup with the default container ($web)
-  clientBlobAccountName: 'cedruspocstorage'
+  clientBlobAccountName: 'pocalaskastorage'
 
 stages:
   - stage: Build
