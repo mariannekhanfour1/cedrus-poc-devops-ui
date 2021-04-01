@@ -1,11 +1,16 @@
-.form-container{
-    width:100%;
+.form-container {
+    width: 100%;
     display: flex;
     justify-content: center;
     text-align: left;
     padding-top: 2rem;
 
-    .form{
-        width:50%
+    .form {
+        width: 50%
+    }
+
+    .submit-button {
+        margin-top: 2rem;
+        min-width: 8rem;
     }
 }

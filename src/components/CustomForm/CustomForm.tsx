@@ -1,6 +1,6 @@
 import React, { useReducer, useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { useFormField } from '../../custom-hooks/useFormField';
+import { Button, Form, Spinner } from 'react-bootstrap';
+// import { useFormField } from '../../custom-hooks/useFormField';
 
 const styles = require("./CustomForm.module.scss");
 
@@ -16,10 +16,16 @@ export const CustomForm: React.FC = (props) => {
     // const emailField = useFormField(); //one way used to change forms  and then submit values using emailField.value
     // const ageField = useFormField(); 
     const [formData, setFormData] = useReducer(formReducer, {});
+    const [loader, setLoader] = useState(false)
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
+        setLoader(true);
         console.log(`formData:`, formData)
+        setTimeout(() => {
+            setLoader(false);
+        }, 3000);
+        
         //    console.log(`${emailField.value}, ${ageField.value}`);
     }
 
@@ -45,9 +51,17 @@ export const CustomForm: React.FC = (props) => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control name="password" type="password" placeholder="Password" onChange={handleOnChange} />
                 </Form.Group>
-                <Button variant="primary" type="submit" onClick={handleSubmit}>
-                    Submit
-  </Button>
+                <Button className={styles['submit-button']} variant="info" type="submit" onClick={handleSubmit}>
+                    {loader && <Spinner
+                        as="span"
+                        animation="border"
+                        size="sm"
+                        role="status"
+                        aria-hidden="true"
+                    />}
+                    {loader ? ' Loading...' : 'Submit'}
+
+                </Button>
             </Form>
 
 
