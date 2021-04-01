@@ -110,3 +110,4 @@ steps:
     appType: webAppLinux
     WebAppName: cedrus-poc-ui
     packageForLinux: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+    
