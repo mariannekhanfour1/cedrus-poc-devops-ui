@@ -51,6 +51,14 @@ export const CustomForm: React.FC = (props) => {
                     <Form.Label>Password</Form.Label>
                     <Form.Control name="password" type="password" placeholder="Password" onChange={handleOnChange} />
                 </Form.Group>
+                <Form.Group controlId="formBasicAge">
+                    <Form.Label>Age</Form.Label>
+                    <Form.Control name="age" type="number" placeholder="Age" onChange={handleOnChange} />
+                </Form.Group>
+                <Form.Group controlId="formBasicIncome">
+                    <Form.Label>Income</Form.Label>
+                    <Form.Control name="income"  type="number" placeholder="Income" onChange={handleOnChange} />
+                </Form.Group>
                 <Button className={styles['submit-button']} variant="info" type="submit" onClick={handleSubmit}>
                     {loader && <Spinner
                         as="span"
