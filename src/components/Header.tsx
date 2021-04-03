@@ -1,14 +1,19 @@
 import React from 'react';
-import { Button, Form, FormControl, Nav, Navbar } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
+const styles = require("./Header.module.scss");
 
 
 export const HeaderComponent: React.FC = (props) => {
 
     return (
         <>
-            <Navbar bg="dark" variant="dark">
-                <Navbar.Brand href="#home">Apply Here</Navbar.Brand>
+            <Navbar className={styles['yellow-bar']}>
+                <Navbar.Brand>Sample State</Navbar.Brand>
+                <Nav className="mr-auto">
+                </Nav>
+            </Navbar>
+            <Navbar className={styles['blue-bar']}>
+                <Navbar.Brand className={styles['white-text']} href="#home">Sample IES</Navbar.Brand>
                 <Nav className="mr-auto">
                 {/* <LinkContainer to="/"> */}
                     {/* <Nav.Link href="#home">Home</Nav.Link> */}

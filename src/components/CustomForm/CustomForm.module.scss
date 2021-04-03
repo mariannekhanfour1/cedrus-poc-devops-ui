@@ -1,12 +1,22 @@
 .form-container {
     width: 100%;
     display: flex;
-    justify-content: center;
     text-align: left;
     padding-top: 2rem;
 
+    .first-form {
+        display: flex;
+        color: #043669;
+    }
+
+    .first-group {
+        padding-left: 2rem;
+        color: #043669;
+        width: 50%;
+    }
+
     .form {
-        width: 50%
+        width: 80%
     }
 
     .submit-button {
@@ -14,3 +24,54 @@
         min-width: 8rem;
     }
 }
+
+.title {
+    text-align: start;
+    padding: 20px;
+    color: #043669;
+}
+
+.title-border {
+    border: 1px solid #043669;
+    border-radius: 8px;
+    margin: 2rem;
+    width: 80%;
+    padding: 2rem;
+    text-align: start;
+    .legend-style {
+        padding: 0 10px;
+        width: 194px !important;
+        font-size: 16px;
+        color: red;
+        font-weight: 700;
+    }
+    .result-style {
+        padding: 0 10px;
+        width: 119px !important;
+        font-size: 16px;
+        color: red;
+        font-weight: 700;
+    }
+}
+
+.question {
+    color: #043669;
+    font-size: 14px;
+}
+
+.question-radio {
+    color: #043669;
+    font-size: 18px;
+}
+
+.radio-div {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.income-control {
+    width: 200px;
+}
+
