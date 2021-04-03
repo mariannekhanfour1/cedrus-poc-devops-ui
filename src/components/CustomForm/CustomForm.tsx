@@ -87,7 +87,7 @@ export const CustomForm: React.FC = (props) => {
                                     <Form.Control type="number" placeholder="0" />
                                 </Form.Group>
                                 <Form.Group className={styles['first-group']}>
-                                    <Form.Label>Persons age 64 and older</Form.Label>
+                                    <Form.Label>Persons age 65 and older</Form.Label>
                                     <Form.Control type="text" pattern="[0-9]*" placeholder="0" name="age" onChange={handleOnChange} />
                                 </Form.Group>
                             </div>
