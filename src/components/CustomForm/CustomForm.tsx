@@ -30,10 +30,24 @@ export const CustomForm: React.FC = (props) => {
     }
 
     const handleOnChange = (event) => {
-        setFormData({
-            name: event.target.name,
-            value: event.target.value,
-        });
+        let name = event.target.name;
+        let value = event.target.value;
+        if (name !== 'age') {
+            setFormData({
+                name: name,
+                value: value,
+            });
+        } else if (name === 'age' && value >0) {
+            setFormData({
+                name: name,
+                value: 65,
+            });
+        } else {
+            setFormData({
+                name: name,
+                value: 63,
+            });
+        }
     }
 
     const localHandleOnChange = (event) => {
