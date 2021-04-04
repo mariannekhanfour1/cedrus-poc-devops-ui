@@ -29,6 +29,11 @@ export const CustomForm: React.FC = (props) => {
         setResult(answer);
     }
 
+    const handleBack = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setResultPage(false);
+    }
+
     const handleOnChange = (event) => {
         let name = event.target.name;
         let value = event.target.value;
@@ -204,6 +209,18 @@ export const CustomForm: React.FC = (props) => {
                             </div>
                         </fieldset>
                     }
+                    <div style={{width: "80%", textAlign: "end", marginBottom: "20px"}}>
+                        <Button className={styles['submit-button']} variant="info" onClick={handleBack}>
+                                    {loader && <Spinner
+                                        as="span"
+                                        animation="border"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />}
+                                    {loader ? ' Loading...' : 'Exit'}
+                        </Button>
+                    </div>
 
                 </div>
             }
