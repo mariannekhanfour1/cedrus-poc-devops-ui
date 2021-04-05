@@ -31,26 +31,34 @@ export const CustomForm: React.FC = (props) => {
 
     const handleBack = async (e: React.FormEvent) => {
         e.preventDefault();
+        setFormData({
+            name: 'age',
+            value: null,
+        });
+        setFormData({
+            name: 'income',
+            value: 0,
+        });
         setResultPage(false);
     }
 
     const handleOnChange = (event) => {
         let name = event.target.name;
         let value = event.target.value;
-        if (name !== 'age') {
+        if (name !== 'age1' && name !== 'age2') {
             setFormData({
                 name: name,
                 value: value,
             });
-        } else if (name === 'age' && value >0) {
+        } else if (name === 'age1' && value >0) {
             setFormData({
-                name: name,
-                value: 65,
+                name: 'age',
+                value: 50,
             });
-        } else {
+        } else if(!formData['age']) {
             setFormData({
-                name: name,
-                value: 63,
+                name: 'age',
+                value: 70,
             });
         }
     }
@@ -93,27 +101,27 @@ export const CustomForm: React.FC = (props) => {
                             <div style={{display: "flex", width: "100%"}}>
                                 <Form.Group className={styles['first-group']}>
                                     <Form.Label>Persons age 18 and younger</Form.Label>
-                                    <Form.Control type="number" placeholder="0" />
+                                    <Form.Control type="text" pattern="[0-9]*" placeholder="0" name="age1" onChange={handleOnChange}/>
                                 </Form.Group>
                                 <Form.Group className={styles['first-group']}>
                                     <Form.Label>Persons age 26 to 64</Form.Label>
-                                    <Form.Control type="number" placeholder="0" />
+                                    <Form.Control type="text" pattern="[0-9]*" placeholder="0" name="age1" onChange={handleOnChange}/>
                                 </Form.Group>
                             </div>
                             <div style={{display: "flex", width: "100%"}}>
                                 <Form.Group className={styles['first-group']}>
                                     <Form.Label>Persons age 19 to 20</Form.Label>
-                                    <Form.Control type="number" placeholder="0" />
+                                    <Form.Control type="text" pattern="[0-9]*" placeholder="0" name="age1" onChange={handleOnChange}/>
                                 </Form.Group>
                                 <Form.Group className={styles['first-group']}>
                                     <Form.Label>Persons age 65 and older</Form.Label>
-                                    <Form.Control type="text" pattern="[0-9]*" placeholder="0" name="age" onChange={handleOnChange} />
+                                    <Form.Control type="text" pattern="[0-9]*" placeholder="0" name="age2" onChange={handleOnChange} />
                                 </Form.Group>
                             </div>
                             <div style={{display: "flex", width: "100%"}}>
                                 <Form.Group className={styles['first-group']}>
                                     <Form.Label>Persons age 21 to 25</Form.Label>
-                                    <Form.Control type="number" placeholder="0" />
+                                    <Form.Control type="text" pattern="[0-9]*" placeholder="0" name="age1" onChange={handleOnChange} />
                                 </Form.Group>
                             </div>
                         </Form>
@@ -161,7 +169,7 @@ export const CustomForm: React.FC = (props) => {
                             </div>
                         </div>
                         <div className={`${styles['radio-div']}`}>
-                            <div className={`${styles['question-radio']}`} >How much money does the household receive rom other sources each month (such as Unemployment Insurance Benefits, Pandemic Unemployment Assistance, Workers Compensation, etc.)?</div>
+                            <div className={`${styles['question-radio']}`} >How much money does the household receive rom other sources each month (such as Unemployment Insurance Benefits, Workers Compensation, etc.)?</div>
                             <div style={{display: "flex", flexDirection:"column", marginLeft:"50px"}}>
                                 <Form.Control className={`${styles['income-control']}`} type="number" placeholder="0" name="benefits" />
                                 <div>Ex 3000 or 3000.00</div>
