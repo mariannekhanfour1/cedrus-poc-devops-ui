@@ -158,7 +158,7 @@ export const CustomForm: React.FC = (props) => {
                         </div>
                     </div>
                 </fieldset>
-                <fieldset className={`${styles['title-border']}`}>
+                <fieldset className={`${styles['title-border']}`}> 
                     <legend className={`${styles['legend-style']}`}>Financial Information</legend>
                     <Form>
                         <div className={`${styles['radio-div']}`}>
