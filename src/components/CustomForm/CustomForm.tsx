@@ -151,7 +151,7 @@ export const CustomForm: React.FC = (props) => {
                         </div>
                     </div>
                     <div className={`${styles['radio-div']}`}>
-                        <div className={`${styles['question-radio']}`} >Was anyone in the home in foster care in Alaska at age 18? </div>
+                        <div className={`${styles['question-radio']}`} >Was anyone in the home in foster care at age 18? </div>
                         <div style={{marginRight: "200px"}}>
                             <input type="radio" value="YES" name="foster"/> Yes
                             <input style={{marginLeft:"50px"}} type="radio" value="NO" name="foster"/> No
@@ -169,7 +169,7 @@ export const CustomForm: React.FC = (props) => {
                             </div>
                         </div>
                         <div className={`${styles['radio-div']}`}>
-                            <div className={`${styles['question-radio']}`} >How much money does the household receive rom other sources each month (such as Unemployment Insurance Benefits, Pandemic Unemployment Assistance, Workers Compensation, etc.)?</div>
+                            <div className={`${styles['question-radio']}`} >How much money does the household receive rom other sources each month (such as Unemployment Insurance Benefits, Workers Compensation, etc.)?</div>
                             <div style={{display: "flex", flexDirection:"column", marginLeft:"50px"}}>
                                 <Form.Control className={`${styles['income-control']}`} type="number" placeholder="0" name="benefits" />
                                 <div>Ex 3000 or 3000.00</div>

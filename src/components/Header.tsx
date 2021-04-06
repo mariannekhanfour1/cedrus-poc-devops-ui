@@ -8,12 +8,12 @@ export const HeaderComponent: React.FC = (props) => {
     return (
         <>
             <Navbar className={styles['yellow-bar']}>
-                <Navbar.Brand>Sample State</Navbar.Brand>
+                <Navbar.Brand style={{fontSize: "32px"}}>SAMPLE STATE</Navbar.Brand>
                 <Nav className="mr-auto">
                 </Nav>
             </Navbar>
             <Navbar className={styles['blue-bar']}>
-                <Navbar.Brand className={styles['white-text']} href="#home">Sample IES</Navbar.Brand>
+                <Navbar.Brand className={styles['white-text']} href="#home">SAMPLE IES</Navbar.Brand>
                 <Nav className="mr-auto">
                 {/* <LinkContainer to="/"> */}
                     {/* <Nav.Link href="#home">Home</Nav.Link> */}
